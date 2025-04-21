@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "PasskeyDemoApp.WebApi\\PasskeyDemoApp.WebApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "PasskeyDemoApp\\PasskeyDemoApp.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

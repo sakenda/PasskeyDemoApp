@@ -1,0 +1,11 @@
+@page "/passkey/redirectToLogin"
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+@code {
+    protected override void OnInitialized()
+    {
+        var returnUrl = Uri.EscapeDataString(Navigation.Uri);
+        Navigation.NavigateTo($"{Constants.PageRoutes.PasskeyLogin}?returnUrl={returnUrl}");
+    }
+}

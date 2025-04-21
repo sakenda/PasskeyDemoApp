@@ -1,0 +1,53 @@
+@page "/passkey/login"
+@using Microsoft.AspNetCore.Components.Forms
+@rendermode InteractiveServer
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-header">
+            <img src="_content/PasskeyHelper/images/passkey-icon.png" />
+            <h2>Login mit Passkey</h2>
+        </div>
+
+        <div style="text-align: start;">
+            <p>
+                <h4>Sicher. Schnell. Ohne Passwort.</h4>
+                <div style="font-size: 11pt;">
+                    Melde dich mit einem Passkey an – ganz ohne Passwort.
+                    Deine Identität wird über ein sicheres Gerät wie Smartphone, Fingerabdruck oder Gesichtserkennung bestätigt.
+                </div>
+            </p>
+            <p>
+                <h4>Tipp: </h4>
+                <div style="font-size: 11pt;">
+                    Wenn du noch keinen Passkey eingerichtet hast, nutze bitte zuerst die <a @onclick="GoToRegisterPage">Registrierung</a>.
+                </div>
+            </p>
+        </div>
+
+        <div class="card-body">
+            <EditForm Model="_model" OnValidSubmit="Login" FormName="loginForm">
+                <DataAnnotationsValidator />
+                <div style="width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 14px;">
+                    <InputText @bind-Value="_model.UserName"
+                        DisplayName="Emailadresse"
+                        class="email-input"
+                        placeholder="name@domain.de" />
+                    <button type="submit">Einloggen</button>
+
+                </div>
+                <small style="text-align: start;">
+                    <ValidationMessage For="() => _model.UserName" />
+                    @if (!string.IsNullOrWhiteSpace(_errorMessage))
+                    {
+                        <div style="color: red;">
+                            @_errorMessage
+                        </div>
+                    }
+                </small>
+            </EditForm>
+
+        </div>
+    </div>
+</div>

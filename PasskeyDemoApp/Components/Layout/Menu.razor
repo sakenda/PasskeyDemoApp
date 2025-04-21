@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
+@rendermode InteractiveServer
+
+<div class="menu">
+    <button @onclick="() => GoBack()">Zurück</button>
+    <h1>@nameof(PasskeyDemoApp)</h1>
+    <div class="items">
+        <button @onclick="@(() => NavigationManager.NavigateTo("/"))">Home</button>
+        <button @onclick="@(() => NavigationManager.NavigateTo("/admin"))">Administration</button>
+
+        <AuthorizeView>
+            <NotAuthorized>
+                <button @onclick="@(() => NavigationManager.NavigateTo(PasskeyHelper.Constants.PageRoutes.PasskeyLogin))">Login</button>
+            </NotAuthorized>
+            <Authorized>
+                <button @onclick="@(() => NavigationManager.NavigateTo(PasskeyHelper.Constants.PageRoutes.PasskeyLogout))">Logout</button>
+            </Authorized>
+        </AuthorizeView>
+    </div>
+</div>
+
+@code {
+    private async Task GoBack()
+    {
+        await JS.InvokeVoidAsync("eval", "history.back()");
+    }
+}

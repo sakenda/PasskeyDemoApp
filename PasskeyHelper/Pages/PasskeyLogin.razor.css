@@ -1,0 +1,79 @@
+
+.container {
+    font-family: Roboto;
+    align-content: center;
+    justify-content: center;
+    margin-inline: auto;
+    background-color: hsl(0, 0%, 89%);
+    width: 100%;
+    height: 100%;
+    margin-inline: auto;
+    color: #777;
+}
+
+h2, h3, h4 {
+    color: #666;
+    margin-block: 7px;
+}
+
+.card {
+    width: 500px;
+    margin: 32px;
+    margin-inline: auto;
+    border: 1px solid hsl(0, 0%, 90%);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    padding: 14px;
+    background-color: white;
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+    .card-header img {
+        height: 50px;
+        aspect-ratio: auto;
+        opacity: 0.4;
+    }
+
+.register-inputs {
+    text-align: start;
+}
+
+.register-container {
+    text-align: start;
+}
+
+::deep input {
+    height: 27px;
+    padding-inline: 14px;
+    width: calc(100% - 28px);
+    border: 1px solid #999;
+    border-radius: 3px;
+}
+
+button {
+    height: 31px;
+    padding-inline: 14px;
+    border: 0;
+    border-radius: 3px;
+    background-color: hsl(235, 38%, 44%);
+    color: white;
+    font-weight: 700;
+}
+
+a {
+    cursor: pointer;
+    color: hsl(235, 38%, 44%);
+    font-weight: 700;
+    font-style: italic;
+}
+
+    a:hover {
+        border-bottom: 1px solid hsl(235, 38%, 44%);
+    }

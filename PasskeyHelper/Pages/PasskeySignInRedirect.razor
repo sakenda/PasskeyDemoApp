@@ -1,0 +1,37 @@
+@page "/passkey/signin-redirect"
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@using PasskeyHelper.Data
+@using PasskeyHelper.Handlers
+@rendermode InteractiveServer
+
+@code {
+
+    [Inject] public CustomAuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
+    [Inject] public NavigationManager NavigationManager { get; set; } = default!;
+    [Inject] public SignInManager<ApplicationUser> SignInManager { get; set; } = default!;
+    [Inject] public UserManager<ApplicationUser> UserManager { get; set; } = default!;
+    [Parameter] public string? Email { get; set; }
+    [Parameter] public string? ReturnUrl { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        var query = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query);
+        var email = query["email"].ToString();
+
+        if (!string.IsNullOrEmpty(email))
+        {
+            var user = await UserManager.FindByNameAsync(email);
+            if (user != null)
+            {
+                AuthenticationStateProvider.MarkUserAsAuthenticated(user);
+                await SignInManager.SignInAsync(user, isPersistent: true);
+            }
+        }
+
+        await Task.Yield();
+        NavigationManager.NavigateTo(ReturnUrl, forceLoad: true);
+    }
+}

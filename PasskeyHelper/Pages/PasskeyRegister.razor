@@ -1,0 +1,60 @@
+﻿@page "/passkey/register"
+@using Microsoft.AspNetCore.Components.Forms
+@rendermode InteractiveServer
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-header">
+            <img src="_content/PasskeyHelper/images/passkey-icon.png" />
+            <h2>Registrieren mit Passkey</h2>
+        </div>
+
+        <div style="text-align: start;">
+            <p>
+                <h4>Was ist ein Passkey?</h4>
+                <div style="font-size: 11pt;">
+                    Ein Passkey ist ein moderner, sicherer Ersatz für Passwörter. Er funktioniert mit biometrischen Daten (z. B. Fingerabdruck oder Gesichtserkennung) oder einem Geräteschutz (z. B. PIN).
+                </div>
+            </p>
+            <p>
+                <h4>Wie funktioniert die Registrierung?</h4>
+                <div style="font-size: 11pt;">
+                    Bei der Registrierung wird ein sicherer Schlüssel auf deinem Gerät erstellt und nur dort gespeichert. Du meldest dich später einfach mit deiner Gerätesperre an – ohne Passwort.
+                </div>
+            </p>
+
+            <p>
+                <h4>Was musst du tun?</h4>
+                <div style="font-size: 11pt;">
+                    Gib deine E-Mail-Adresse ein, um deinen Passkey zu erstellen.
+                </div>
+            </p>
+        </div>
+
+        <EditForm Model="model" OnValidSubmit="Register" FormName="registerForm">
+            <DataAnnotationsValidator />
+            <div style="width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 14px;">
+                <InputText @bind-Value="model.UserName"
+                    DisplayName="Emailadresse"
+                    class="email-input"
+                    placeholder="name@domain.de" />
+                <button type="submit">Registrieren</button>
+
+            </div>
+            <small style="text-align: start;">
+                <ValidationMessage For="() => model.UserName" />
+                @if (!string.IsNullOrWhiteSpace(errorMessage))
+                {
+                    <div style="color: red;">
+                        @errorMessage
+                    </div>
+                }
+            </small>
+        </EditForm>
+    </div>
+</div>
+
+<script src="./_content/PasskeyHelper/js/register.js" type="module" />
+<script src="./_content/PasskeyHelper/js/helpers.js" />
+<script src="_framework/blazor.server.js"></script>

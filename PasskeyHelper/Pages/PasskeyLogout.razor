@@ -1,0 +1,26 @@
+@page "/passkey/logout"
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@using PasskeyHelper.Data
+@using PasskeyHelper.Handlers
+@rendermode InteractiveServer
+
+@code{
+
+    [Inject] public CustomAuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
+    [Inject] public NavigationManager NavigationManager { get; set; } = default!;
+    [Inject] public IHttpContextAccessor HttpContextAccessor { get; set; } = default!;
+    [Inject] public SignInManager<ApplicationUser> SignInManager { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await SignInManager.SignOutAsync();
+        HttpContextAccessor.HttpContext?.Session.Clear();
+        AuthenticationStateProvider.MarkUserAsLoggedOut();
+
+        await Task.Yield();
+        NavigationManager.NavigateTo(Constants.PageRoutes.PasskeyLogin);
+        StateHasChanged();
+    }
+
+}

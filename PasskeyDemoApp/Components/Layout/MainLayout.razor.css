@@ -1,0 +1,42 @@
+#blazor-error-ui {
+    color-scheme: light only;
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+
+
+h1, h2, h3, h4 {
+    color: #666;
+    margin-block: 7px;
+}
+
+button {
+    height: 31px;
+    padding-inline: 14px;
+    border: 0;
+    border-radius: 3px;
+    background-color: hsl(235, 38%, 44%);
+    color: white;
+    font-weight: 700;
+}
+
+    button:hover {
+        background-color: hsl(235, 38%, 54%);
+        transition: all 250ms ease-in-out;
+    }
