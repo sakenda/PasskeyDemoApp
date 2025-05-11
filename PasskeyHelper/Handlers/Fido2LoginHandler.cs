@@ -10,7 +10,7 @@ using PasskeyHelper.Models.Passkey;
 
 namespace PasskeyHelper.Handlers;
 
-public partial class Fido2LoginHandler
+public class Fido2LoginHandler
 {
     private readonly IFido2 _fido2 = default!;
     private readonly AttestationStateService _attestationStateService = default!;
@@ -25,7 +25,7 @@ public partial class Fido2LoginHandler
         _applicationDbContext = applicationDbContext;
     }
 
-    public async Task<Results<ProblemHttpResult, Ok<VerifyAssertionResult>>> CreateAssertion(AuthenticatorAssertionRawResponse assertionResponse, CancellationToken cancellationToken = default)
+    internal async Task<Results<ProblemHttpResult, Ok<VerifyAssertionResult>>> CreateAssertion(AuthenticatorAssertionRawResponse assertionResponse, CancellationToken cancellationToken = default)
     {
         var json = _attestationStateService.Get(Constants.Common.Fido2AttestationOptionsKey);
 
@@ -82,7 +82,7 @@ public partial class Fido2LoginHandler
         return TypedResults.Ok(assertionResult);
     }
 
-    public async Task<Ok<AssertionOptions>> CreateAssertionOptions(CreateAssertionOptionsInputModel input, CancellationToken cancellationToken = default)
+    internal async Task<Ok<AssertionOptions>> CreateAssertionOptions(CreateAssertionOptionsInputModel input, CancellationToken cancellationToken = default)
     {
         var normalizedUserName = _userManager.NormalizeName(input.UserName);
 
@@ -109,7 +109,7 @@ public partial class Fido2LoginHandler
         return TypedResults.Ok(options);
     }
 
-    public async Task<Results<BadRequest, Ok<RegisteredPublicKeyCredential>>> CreateAttestation(
+    internal async Task<Results<BadRequest, Ok<RegisteredPublicKeyCredential>>> CreateAttestation(
         AuthenticatorAttestationRawResponse attestationResponse,
         UserManager<ApplicationUser> userManager,
         CancellationToken cancellationToken = default)
@@ -186,7 +186,7 @@ public partial class Fido2LoginHandler
         return TypedResults.Ok(credentialResult.Result);
     }
 
-    public Ok<CredentialCreateOptions> CreateAttestationOptions(CreateAttestationOptionsInputModel input)
+    internal Ok<CredentialCreateOptions> CreateAttestationOptions(CreateAttestationOptionsInputModel input)
     {
         var user = new Fido2User
         {
@@ -224,7 +224,7 @@ public partial class Fido2LoginHandler
         return TypedResults.Ok(options);
     }
 
-    public string GetAssertUserEmail(VerifyAssertionResult verifyAssertionResult)
+    internal string GetAssertUserEmail(VerifyAssertionResult verifyAssertionResult)
     {
         var pubKeycred = _applicationDbContext.PublicKeyCredentials.Where(x => x.Id == verifyAssertionResult.CredentialId).SingleOrDefault();
         var user = _applicationDbContext.Users

@@ -13,7 +13,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         return Task.FromResult(_cachedState ?? new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())));
     }
 
-    public void MarkUserAsAuthenticated(ApplicationUser user)
+    internal void MarkUserAsAuthenticated(ApplicationUser user)
     {
         // Aus AD Rollen/Autorisierungen lesen
         string[] roles = new string[] { "Admin", "User" }; // TODO: Replace with actual role retrieval logic
@@ -36,7 +36,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         NotifyAuthenticationStateChanged(Task.FromResult(_cachedState));
     }
 
-    public void MarkUserAsLoggedOut()
+    internal void MarkUserAsLoggedOut()
     {
         var identity = new ClaimsIdentity();
         var principal = new ClaimsPrincipal(identity);

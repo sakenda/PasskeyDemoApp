@@ -10,7 +10,7 @@ using AuthenticatorTransport = PasskeyHelper.Data.AuthenticatorTransport;
 
 namespace PasskeyHelper.Handlers;
 
-public partial class Fido2RegisterHandler
+public class Fido2RegisterHandler
 {
     private readonly IFido2 _fido2 = default!;
     private readonly AttestationStateService _attestationStateService = default!;
@@ -23,7 +23,7 @@ public partial class Fido2RegisterHandler
         _userManager = userManager;
     }
 
-    public Ok<CredentialCreateOptions> CreateAttestationOptions(CreateAttestationOptionsInputModel input)
+    internal Ok<CredentialCreateOptions> CreateAttestationOptions(CreateAttestationOptionsInputModel input)
     {
         var user = new Fido2User
         {
@@ -60,7 +60,7 @@ public partial class Fido2RegisterHandler
         return TypedResults.Ok(options);
     }
 
-    public async Task<Results<ProblemHttpResult, Ok<RegisteredPublicKeyCredential>>> CreateAttestation(AuthenticatorAttestationRawResponse attestationResponse, CancellationToken cancellationToken = default)
+    internal async Task<Results<ProblemHttpResult, Ok<RegisteredPublicKeyCredential>>> CreateAttestation(AuthenticatorAttestationRawResponse attestationResponse, CancellationToken cancellationToken = default)
     {
         var json = _attestationStateService.Get(Constants.Common.Fido2AttestationOptionsKey);
         if (string.IsNullOrWhiteSpace(json))

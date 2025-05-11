@@ -67,7 +67,7 @@ public static class Extensions
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseSession();
-        InitializeDatabase(app.Services);
+        app.Services.InitializeDatabase();
         return app;
     }
 
@@ -77,7 +77,7 @@ public static class Extensions
         return builder;
     }
 
-    private static void InitializeDatabase(IServiceProvider serviceProvider)
+    private static void InitializeDatabase(this IServiceProvider serviceProvider)
     {
         using var scope = serviceProvider.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

@@ -18,7 +18,7 @@ public class VerificationMailHandler
         _fido2Configuration = fido2Configuration;
     }
 
-    public async Task SendVerificationMailAsync(string token)
+    internal async Task SendVerificationMailAsync(string token)
     {
         if (OperatingSystem.IsBrowser())
             throw new PlatformNotSupportedException("Sending emails is not supported in Blazor WebAssembly.");
