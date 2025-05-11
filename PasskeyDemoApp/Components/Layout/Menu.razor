@@ -4,18 +4,18 @@
 @rendermode InteractiveServer
 
 <div class="menu">
-    <button @onclick="() => GoBack()">Zurück</button>
     <h1>@nameof(PasskeyDemoApp)</h1>
     <div class="items">
-        <button @onclick="@(() => NavigationManager.NavigateTo("/"))">Home</button>
-        <button @onclick="@(() => NavigationManager.NavigateTo("/admin"))">Administration</button>
+        <a @onclick="() => GoBack()">🠈 Zurück</a>
+        <a @onclick="@(() => NavigationManager.NavigateTo("/"))">⌂ Home</a>
+        <a @onclick="@(() => NavigationManager.NavigateTo("/admin"))">⛨ Administration</a>
 
         <AuthorizeView>
             <NotAuthorized>
-                <button @onclick="@(() => NavigationManager.NavigateTo(PasskeyHelper.Constants.PageRoutes.PasskeyLogin))">Login</button>
+                <a @onclick="RedirectToLogin">👤 Login</a>
             </NotAuthorized>
             <Authorized>
-                <button @onclick="@(() => NavigationManager.NavigateTo(PasskeyHelper.Constants.PageRoutes.PasskeyLogout))">Logout</button>
+                <a @onclick="@(() => NavigationManager.NavigateTo(PasskeyHelper.Constants.PageRoutes.PasskeyLogout))">👤 Logout</a>
             </Authorized>
         </AuthorizeView>
     </div>
@@ -25,5 +25,11 @@
     private async Task GoBack()
     {
         await JS.InvokeVoidAsync("eval", "history.back()");
+    }
+
+    private void RedirectToLogin()
+    {
+        var route = $"{PasskeyHelper.Constants.PageRoutes.PasskeyRedirectToLogin}?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}";
+        NavigationManager.NavigateTo(PasskeyHelper.Constants.PageRoutes.PasskeyRedirectToLogin);
     }
 }

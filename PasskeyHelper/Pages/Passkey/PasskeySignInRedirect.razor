@@ -20,6 +20,7 @@
         var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
         var query = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query);
         var email = query["email"].ToString();
+        var returnUrl = query["returnUrl"].ToString();
 
         if (!string.IsNullOrEmpty(email))
         {
@@ -32,6 +33,6 @@
         }
 
         await Task.Yield();
-        NavigationManager.NavigateTo(ReturnUrl, forceLoad: true);
+        NavigationManager.NavigateTo(returnUrl, forceLoad: true);
     }
 }

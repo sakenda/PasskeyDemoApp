@@ -6,8 +6,9 @@ using PasskeyHelper.Handlers;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
+using PasskeyHelper.Models.Passkey;
 
-namespace PasskeyHelper.Pages;
+namespace PasskeyHelper.Pages.Passkey;
 
 public partial class PasskeyLogin
 {
@@ -37,8 +38,6 @@ public partial class PasskeyLogin
         dotNetRef = DotNetObjectReference.Create(this);
         base.OnInitialized();
     }
-
-    private void GoToRegisterPage() => NavigationManager.NavigateTo(Constants.PageRoutes.PasskeyRegister);
 
     private async Task Login()
     {

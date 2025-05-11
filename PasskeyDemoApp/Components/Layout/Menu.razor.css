@@ -1,20 +1,28 @@
 ﻿
 .menu {
-    display: flex;
+    display: grid;
     gap: 14px;
-    align-items: center;
     justify-content: space-between;
     background-color: hsl(0, 0%, 89%);
     padding: 8px 14px;
-    z-index: 100;
+    border-bottom: 2px solid hsl(0, 0%, 80%);
 }
 
     .menu .items {
-        display: flex;
-        gap: 14px;
-        align-items: center;
+        display: inline-flex;
+        gap: 28px;
+        align-items: baseline;
     }
 
     .menu h1 {
-        margin-right: 2rem;
+        margin-bottom: 0;
+    }
+
+a {
+    cursor: pointer;
+    color: hsl(235, 38%, 44%);
+}
+
+    a:hover {
+        font-weight: 700;
     }

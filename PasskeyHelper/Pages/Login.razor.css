@@ -1,0 +1,29 @@
+.container {
+}
+
+    .container .button-selection {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 14px;
+    }
+
+    .container .selection {
+        
+    }
+
+button {
+    height: 31px;
+    padding-inline: 14px;
+    border-radius: 3px;
+    font-weight: 700;
+    border: 1px solid #777;
+    background-color: white;
+    color: #777;
+}
+
+    button.active {
+        background-color: hsl(235, 38%, 44%);
+        color: white;
+    }

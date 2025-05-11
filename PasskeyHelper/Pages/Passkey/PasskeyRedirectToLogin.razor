@@ -3,9 +3,11 @@
 @rendermode InteractiveServer
 
 @code {
+    [Parameter] public string? ReturnUrl { get; set; } = "/";
+
     protected override void OnInitialized()
     {
-        var returnUrl = Uri.EscapeDataString(Navigation.Uri);
-        Navigation.NavigateTo($"{Constants.PageRoutes.PasskeyLogin}?returnUrl={returnUrl}");
+        Navigation.NavigateTo($"{Constants.PageRoutes.Login}?returnUrl={ReturnUrl}");
     }
+
 }

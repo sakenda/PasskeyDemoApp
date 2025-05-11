@@ -43,4 +43,5 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         _cachedState = new AuthenticationState(principal);
         NotifyAuthenticationStateChanged(Task.FromResult(_cachedState));
     }
+
 }

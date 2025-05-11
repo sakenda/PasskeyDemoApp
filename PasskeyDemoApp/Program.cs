@@ -1,6 +1,7 @@
 using PasskeyDemoApp.Components;
 using Microsoft.EntityFrameworkCore;
 using PasskeyHelper;
+using PasskeyHelper.Models.VerificationMail;
 
 namespace PasskeyDemoApp;
 
@@ -30,6 +31,18 @@ public class Program
                 options.ServerDomain = builder.Configuration["Fido2:ServerDomain"];
                 options.ServerName = builder.Configuration["Fido2:ServerName"];
                 options.TimestampDriftTolerance = builder.Configuration.GetValue<int>("Fido2:TimestampDriftTolerance");
+            },
+            () => new SmtpSettings
+            {
+                Host = builder.Configuration["Smtp:Host"]!,
+                Port = builder.Configuration.GetValue<int>("Smtp:Port"),
+                Username = builder.Configuration["Smtp:Username"]!,
+                Password = builder.Configuration["Smtp:Password"]!,
+                MailSettings = new MailSettings
+                {
+                    From = builder.Configuration["Smtp:MailSettings:From"]!,
+                    Subject = builder.Configuration["Smtp:MailSettings:Subject"]!,
+                }
             });
 
         var app = builder.Build();

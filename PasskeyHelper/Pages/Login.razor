@@ -1,0 +1,31 @@
+@page "/login"
+@using PasskeyHelper.Pages.Passkey
+@rendermode InteractiveServer
+
+<div class="container">
+    <div class="button-selection">
+        <button class="@(_currentPage == ComponentPages.PasskeyLogin ? "active" : "")" @onclick="GoToPasskeyLoginPage">Login</button>
+        <button class="@(_currentPage == ComponentPages.PasskeyRegister ? "active" : "")" @onclick="GoToPasskeyRegisterPage">Registrierung</button>
+    </div>
+    <div class="selection">
+        @if (_currentPage == ComponentPages.PasskeyLogin)
+        {
+            <PasskeyLogin ReturnUrl="@ReturnUrl" />
+        }
+        else if (_currentPage == ComponentPages.PasskeyRegister)
+        {
+            <PasskeyRegister ReturnUrl="@ReturnUrl" />
+        }
+    </div>
+</div>
+
+@code{
+
+    private ComponentPages _currentPage = ComponentPages.PasskeyLogin;
+
+    [Parameter] public string? ReturnUrl { get; set; }
+
+    private void GoToPasskeyLoginPage() => _currentPage = ComponentPages.PasskeyLogin;
+    private void GoToPasskeyRegisterPage() => _currentPage = ComponentPages.PasskeyRegister;
+
+}

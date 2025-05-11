@@ -4,7 +4,6 @@
     align-content: center;
     justify-content: center;
     margin-inline: auto;
-    background-color: hsl(0, 0%, 89%);
     width: 100%;
     height: 100%;
     margin-inline: auto;
@@ -18,7 +17,7 @@ h2, h3, h4 {
 
 .card {
     width: 500px;
-    margin: 32px;
+    margin: 14px;
     margin-inline: auto;
     border: 1px solid hsl(0, 0%, 90%);
     border-radius: 10px;

@@ -19,7 +19,7 @@
         AuthenticationStateProvider.MarkUserAsLoggedOut();
 
         await Task.Yield();
-        NavigationManager.NavigateTo(Constants.PageRoutes.PasskeyLogin);
+        NavigationManager.NavigateTo(Constants.PageRoutes.Login);
         StateHasChanged();
     }
 

@@ -1,14 +1,13 @@
 ﻿using Fido2NetLib;
 using Fido2NetLib.Objects;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.JSInterop;
 using PasskeyHelper.Handlers;
+using PasskeyHelper.Models.Passkey;
 using System.Text.Json;
-using static PasskeyHelper.PasskeyRegister;
 
-namespace PasskeyHelper.Pages;
+namespace PasskeyHelper.Pages.Passkey;
 
 public partial class PasskeyRegister
 {
@@ -73,12 +72,12 @@ public partial class PasskeyRegister
         var transports = dto.Response.Transports?
             .Select(t => t switch
             {
-                "usb" => Fido2NetLib.Objects.AuthenticatorTransport.Usb,
-                "nfc" => Fido2NetLib.Objects.AuthenticatorTransport.Nfc,
-                "ble" => Fido2NetLib.Objects.AuthenticatorTransport.Ble,
-                "smart-card" => Fido2NetLib.Objects.AuthenticatorTransport.SmartCard,
-                "hybrid" => Fido2NetLib.Objects.AuthenticatorTransport.Hybrid,
-                "internal" => Fido2NetLib.Objects.AuthenticatorTransport.Internal,
+                "usb" => AuthenticatorTransport.Usb,
+                "nfc" => AuthenticatorTransport.Nfc,
+                "ble" => AuthenticatorTransport.Ble,
+                "smart-card" => AuthenticatorTransport.SmartCard,
+                "hybrid" => AuthenticatorTransport.Hybrid,
+                "internal" => AuthenticatorTransport.Internal,
                 _ => throw new ArgumentOutOfRangeException(nameof(t), $"Unknown transport: {t}")
             })
             .ToArray();

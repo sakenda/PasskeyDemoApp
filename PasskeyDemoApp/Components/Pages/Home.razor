@@ -23,7 +23,7 @@
         <Authorized>
             <p>
                 <strong>Authenticated as: </strong>
-                @context.User.Identity.Name
+                @(context?.User?.Identity?.Name ?? "- NOT FOUND -")
             </p>
         </Authorized>
     </AuthorizeView>

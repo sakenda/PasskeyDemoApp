@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using PasskeyHelper.Data;
-using PasskeyHelper.Models;
 using Microsoft.EntityFrameworkCore;
 using AuthenticatorTransport = PasskeyHelper.Data.AuthenticatorTransport;
+using PasskeyHelper.Models.Passkey;
 
 namespace PasskeyHelper.Handlers;
 
@@ -227,8 +227,10 @@ public partial class Fido2LoginHandler
     public string GetAssertUserEmail(VerifyAssertionResult verifyAssertionResult)
     {
         var pubKeycred = _applicationDbContext.PublicKeyCredentials.Where(x => x.Id == verifyAssertionResult.CredentialId).SingleOrDefault();
-        var user = _applicationDbContext.Users.Where(x => x.Id == pubKeycred.UserId).SingleOrDefault();
-
+        var user = _applicationDbContext.Users
+            .Where(x => pubKeycred != null && pubKeycred.UserId == x.Id)
+            .SingleOrDefault();
+        
         if (user is null)
             return "";
 

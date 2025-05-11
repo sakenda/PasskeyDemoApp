@@ -1,4 +1,4 @@
-namespace PasskeyHelper.Models;
+namespace PasskeyHelper.Models.Passkey;
 
 public class AttestationStateService
 {
