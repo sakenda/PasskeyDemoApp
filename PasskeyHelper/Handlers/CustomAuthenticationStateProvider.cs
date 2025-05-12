@@ -16,18 +16,18 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     internal void MarkUserAsAuthenticated(ApplicationUser user)
     {
         // Aus AD Rollen/Autorisierungen lesen
-        string[] roles = new string[] { "Admin", "User" }; // TODO: Replace with actual role retrieval logic
+        string[] roles = [ "Admin", "User" ]; // TODO: Replace with actual role retrieval logic
 
         var claims = new List<Claim>()
         {
-            new Claim(ClaimTypes.Name, user.UserName ?? ""),
-            new Claim(ClaimTypes.Email, user.Email ?? ""),
-            new Claim(ClaimTypes.NameIdentifier, user.Id ?? ""),
+            new(ClaimTypes.Name, user.UserName ?? ""),
+            new(ClaimTypes.Email, user.Email ?? ""),
+            new(ClaimTypes.NameIdentifier, user.Id ?? ""),
         };
 
         foreach (var role in roles)
         {
-            claims.Add(new Claim(ClaimTypes.Role, role));
+            claims.Add(new(ClaimTypes.Role, role));
         }
 
         var identity = new ClaimsIdentity(claims, "Custom");

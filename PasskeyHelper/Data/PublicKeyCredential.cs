@@ -12,6 +12,6 @@ public class PublicKeyCredential
     public required string AttestationFormat { get; set; }
     public required Guid AaGuid { get; set; }
     public required string UserId { get; set; }
-    public ICollection<AuthenticatorTransport> AuthenticatorTransports { get; } = new List<AuthenticatorTransport>();
-    public ICollection<DevicePublicKey> DevicePublicKeys { get; } = new List<DevicePublicKey>();
+    public ICollection<AuthenticatorTransport> AuthenticatorTransports { get; } = [];
+    public ICollection<DevicePublicKey> DevicePublicKeys { get; } = [];
 }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasskeyDemoApp", "PasskeyDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasskeyHelper", "PasskeyHelper\PasskeyHelper.csproj", "{8F34276C-BAAB-4005-A012-9D7F16275EF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveDirectoryHelper", "ActiveDirectoryHelper\ActiveDirectoryHelper.csproj", "{1AD8A190-E489-4D85-BD2C-029EA9CAB3F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8F34276C-BAAB-4005-A012-9D7F16275EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F34276C-BAAB-4005-A012-9D7F16275EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F34276C-BAAB-4005-A012-9D7F16275EF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AD8A190-E489-4D85-BD2C-029EA9CAB3F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AD8A190-E489-4D85-BD2C-029EA9CAB3F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AD8A190-E489-4D85-BD2C-029EA9CAB3F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AD8A190-E489-4D85-BD2C-029EA9CAB3F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
